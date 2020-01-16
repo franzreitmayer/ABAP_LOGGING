@@ -59,6 +59,9 @@ Every method to append the log returns the logheader itself, thus you can chain 
   )->ADD_EXCEPTION( EXCEPTION_REF )->PERSIST( ).
 ```
 
-Call method persist to save the logs to database. the framework support two modes of storing the log:
+Call method persist to save the logs to database. the framework support two ways of storing the log (controlled by parameter iv_save_immediately). Please refer to the wikipages for further details:
 * Storing in a parallel db connection (no dependency to surrounding TX)
 * Storing in same db connection (depends on surrounding TX)
+
+The method persist also has the paramter iv_with_callstack which allows to store the callstack at the BAL logheader.
+
