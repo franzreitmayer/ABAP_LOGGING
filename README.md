@@ -10,3 +10,35 @@ The framework is managed on github with the use of ZABAPGIT (https://github.com/
 ## Usage
 The report ZCALOG_SAMPLE report in package ZCALOG demonstrates how the framework can be used.
 
+Use the central class ZCL_CALOG_FACTORY to get a header object to manager further logging:
+
+```abap
+" create a log header for default log object and sub object...
+data(log_header) = ZCL_CALOG_FACTORY=>CREATE_HEADER( ).
+```
+
+Use the header object retrieved to write messages, texts and exceptions
+
+```abap
+" add a simle text message
+log_header->ADD_TEXT( 'This is a test' ).
+
+" add a message with parameters...
+log_header->ADD_MESSAGE(
+  exporting
+    IV_MSGTY           = conv symsgty( 'E' )
+    IV_MSGID           = CONV symsgid( 'ZCALOG_TST')
+    IV_MSGNO           = CONV symsgno( 0 )
+    IV_MSGV1           = 'Param 1'
+    IV_MSGV2           = 'Param 2'
+    IV_MSGV3           = 'Param 3'
+    IV_MSGV4           = 'Param 4'
+).
+
+try.
+  data(num) = 1 / 0.
+catch cx_root into data(exception_ref).
+  log_header->ADD_EXCEPTION( exception_ref ).
+endtry.
+
+```
