@@ -42,3 +42,7 @@ catch cx_root into data(exception_ref).
 endtry.
 
 ```
+
+Call method persist to save the logs to database. the framework support two modes of storing the log:
+* Storing in a parallel db connection (no dependency to surrounding TX)
+* Storing in same db connection (depends on surrounding TX)
