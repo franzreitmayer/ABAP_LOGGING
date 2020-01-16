@@ -43,6 +43,22 @@ endtry.
 
 ```
 
+Every method to append the log returns the logheader itself, thus you can chain the appends to keep coding short.
+
+```abap
+" use chained method calls to keep code short...
+  ZCL_CALOG_FACTORY=>CREATE_HEADER(
+  )->add_text( 'This is a test'
+  )->ADD_MESSAGE( IV_MSGTY           = conv symsgty( 'E' )
+    IV_MSGID           = CONV symsgid( 'ZCALOG_TST')
+    IV_MSGNO           = CONV symsgno( 0 )
+    IV_MSGV1           = 'Param 1'
+    IV_MSGV2           = 'Param 2'
+    IV_MSGV3           = 'Param 3'
+    IV_MSGV4           = 'Param 4'
+  )->ADD_EXCEPTION( EXCEPTION_REF )->PERSIST( ).
+```
+
 Call method persist to save the logs to database. the framework support two modes of storing the log:
 * Storing in a parallel db connection (no dependency to surrounding TX)
 * Storing in same db connection (depends on surrounding TX)
