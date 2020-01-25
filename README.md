@@ -2,7 +2,7 @@
 Simple Logging Framework for ABAP Netweaver
 
 ## Description
-This framework is designed to enable fluent, less verbose and isolated logging at ABAP Netweaver stack. ABAP Netweaver Stack offeres the Busines Application Log to support logging. However the api to use is is still not object oriented and quite verbose. This frameworks offers an object oriented wrapper to support he most common logging operations.
+This framework is designed to enable fluent, less verbose and isolated logging at ABAP Netweaver stack. ABAP Netweaver Stack offeres the Busines Application Log (BAL) to support logging. However the BAL-API is is still not object oriented and quite verbose. This framework offers an object oriented wrapper to support he most common logging operations.
 
 ## Installation
 The framework is managed on github with the use of ZABAPGIT (https://github.com/larshp/abapGit/blob/master/src/zabapgit.prog.abap) So you can use ZABAPGIT to install the code at your system. As a __post installation task__ you need to __create a BAL log object__ (Transaction SLG0) with the name __ZCALOGDEF__ and a __subobject__ assigned to with the same name __ZCALOGDEF__. In order to check wether the installation was successful you can run the unit test of class ZCL_CALOG_HEADER.
@@ -63,5 +63,7 @@ Call method persist to save the logs to database. the framework support two ways
 * Storing in a parallel db connection (no dependency to surrounding TX)
 * Storing in same db connection (depends on surrounding TX)
 
-The method persist also has the paramter iv_with_callstack which allows to store the callstack at the BAL logheader.
+The method persist also has the paramter iv_with_callstack which allows to store the callstack at the BAL logheader. You can open the stacktrace (3) at transaction SLG1 by selecting the header (1) and click at the Details [F7] (2) as shown at the screenshot bellow.
+![Screenshot stacktrace feature](https://raw.githubusercontent.com/mcfly77/ABAP_LOGGING/media/media/screenshot-stacktrace.png?token=ACIWF2O6G5ZINRESQIXJWOC6GVJLQ)
+
 
