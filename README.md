@@ -35,6 +35,7 @@ log_header->ADD_MESSAGE(
     IV_MSGV4           = 'Param 4'
 ).
 
+" add an exception
 try.
   data(num) = 1 / 0.
 catch cx_root into data(exception_ref).
